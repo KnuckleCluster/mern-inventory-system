@@ -11,6 +11,15 @@ const app = express();
 app.use(express.json());
 
 
+
+// middleware for handling cors policy(cors authentication something like that)
+//option 1 : allow all origins with default of cors(*)
+app.use(cors());
+
+
+
+
+
 app.get('/', (request, response) => 
     {
         console.log(request)
@@ -19,6 +28,9 @@ app.get('/', (request, response) =>
 );
 
 app.use('/categories', categoryRouter);
+
+
+
 
 
 
