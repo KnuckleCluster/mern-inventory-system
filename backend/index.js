@@ -3,7 +3,7 @@ import { PORT, mongoDBURL } from "./config.js";
 import  mongoose  from "mongoose";
 import { Category } from "./models/inventoryCategories.js";
 import categoryRouter from "./routes/categoryRoute.js";
-
+import cors from 'cors';
 
 const app = express();
 
@@ -15,9 +15,12 @@ app.use(express.json());
 // middleware for handling cors policy(cors authentication something like that)
 //option 1 : allow all origins with default of cors(*)
 app.use(cors());
-
-
-
+//option 2 : allow custom origins
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+}));
 
 
 app.get('/', (request, response) => 
